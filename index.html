@@ -336,9 +336,11 @@ var current_mode = 0;
 var old_total_pages = 0;
 var total_pages = 0;
    
-function print_issue(issue, show_answer)
+function print_issue(issue, show_answer, issueNum)
 {
-    var s = '<td> ';
+    var s = '<td>';
+    // s += ' (<i>';   
+    // s += issueNum + 1 +'</i>) &nbsp&nbsp&nbsp';
     s += issue.opr[0];
     s += issue.op[0];
     s += issue.opr[1];
@@ -386,6 +388,7 @@ function show_issues()
 {
     var p, r, c;
     var tab, tr, td;
+    var n;
 
     var show_answer = document.getElementById("show_answer_cb").checked;
 
@@ -399,7 +402,8 @@ function show_issues()
             tr = tab.rows[r + 1];
             for (c = 0; c < 5; c ++) {
                 td = tr.cells[c];
-                td.innerHTML = print_issue(cells[p*CELLS_PER_PAGE + c*10 + r], show_answer);
+                n=p*CELLS_PER_PAGE + r*5 + c;
+                td.innerHTML = print_issue(cells[n], show_answer,n);
             }
         }
     }
